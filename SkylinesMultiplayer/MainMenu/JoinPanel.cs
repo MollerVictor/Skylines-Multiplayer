@@ -133,7 +133,7 @@ namespace SkylinesMultiplayer
             SetLabel(m_playersLabel, "Players: -", 505, 100);
 
             m_pingLabel = joinPanel.AddUIComponent<UILabel>();
-            SetLabel(m_pingLabel, "Ping: -", 505, 125);
+            SetLabel(m_pingLabel, "Ping: Trying to ping server", 505, 125);
 
             m_errorLabel = joinPanel.AddUIComponent<UILabel>();
             SetLabel(m_errorLabel, "", 505, 150);
@@ -341,7 +341,7 @@ namespace SkylinesMultiplayer
                     m_pingIp = receiver;
 
                     m_playersLabel.text = "Players: -";
-                    m_pingLabel.text = "Ping: -";
+                    m_pingLabel.text = "Ping: Trying to ping server";
                     m_errorLabel.text = "";
                     
                     m_gotResponseFromServer = false;
