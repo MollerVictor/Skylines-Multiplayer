@@ -8,7 +8,7 @@ namespace SkylinesMultiplayer
     class Settings
     {
         public static string ServerUrl = "http://www.citiesmulti.victormoller.com/api/server";
-        public static int ModVersion = 1;
+        public static int ModVersion = 2;
         public static string WorkshopID = "512862335";
     }
 }
