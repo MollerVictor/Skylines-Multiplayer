@@ -11,6 +11,7 @@ using ColossalFramework;
 using UnityEngine;
 using System.Reflection;
 using ColossalFramework.Plugins;
+using ColossalFramework.Steamworks;
 using ColossalFramework.UI;
 using ICities;
 using Lidgren.Network;
@@ -42,6 +43,7 @@ namespace SkylinesMultiplayer
         void Awake()
         {
             instance = this;
+            gameObject.AddComponent<Scoreboard>();
         }
 
         private int m_lastId = 1;
@@ -185,6 +187,7 @@ namespace SkylinesMultiplayer
                             foreach (var player in m_players)
                             {
                                 om.Write(player.ID);
+                                om.Write(player.Name);
                             }
                             m_server.SendMessage(om, msg.SenderConnection, NetDeliveryMethod.ReliableOrdered, 0);
                         }
@@ -278,15 +281,17 @@ namespace SkylinesMultiplayer
                     all2.Remove(msg.SenderConnection);
 
                     int id2 = msg.ReadInt32();
+                    string playerName = msg.ReadString();
                     if (all2.Count > 0)
                     {
                         NetOutgoingMessage om = m_server.CreateMessage();
                         om.Write((int)MessageFunction.SpawnPlayer);
                         om.Write(id2);
+                        om.Write(playerName);
 
                         m_server.SendMessage(om, all2, NetDeliveryMethod.ReliableUnordered, 0);
                     }
-                    SpawnPlayer(id2, msg.SenderConnection);
+                    SpawnPlayer(id2, playerName, msg.SenderConnection);
                     break;
                 default:
                     Debug.LogWarning("Unhandled msg type: " + type.ToString());
@@ -311,13 +316,15 @@ namespace SkylinesMultiplayer
                     for (int i = 0; i < count; i++)
                     {
                         int id = msg.ReadInt32();
+                        string playerName = msg.ReadString();
 
-                        SpawnPlayer(id);
+                        SpawnPlayer(id, playerName);
                     }
 
                     int newId = SpawnLocalPlayer();
                     MessageSpawnPlayer spawnMessage = new MessageSpawnPlayer();
                     spawnMessage.playerId = newId;
+                    spawnMessage.playerName = Steam.personaName;
                     SendNetworkMessage(spawnMessage, SendTo.Others);
                     break;
                 case MessageFunction.UpdateVehiclesPositions:
@@ -336,15 +343,18 @@ namespace SkylinesMultiplayer
             }
         }
 
-        public void SpawnPlayer(int id, NetConnection ownerConnection = null)
+        public void SpawnPlayer(int id, string playerName, NetConnection ownerConnection = null)
         {
             GameObject clone = PlayerRemotePrefab.Create(id);
 
             NetworkPlayer playerInfo = new NetworkPlayer();
             playerInfo.ID = id;
+            playerInfo.Name = playerName;
             playerInfo.PlayerGameObject = clone;
             playerInfo.OwnerConnection = ownerConnection;
             m_players.Add(playerInfo);
+
+            Debug.Log("Player " + playerName + " has connected.");
         }
 
         /// <summary>
@@ -360,6 +370,7 @@ namespace SkylinesMultiplayer
             
             NetworkPlayer playerInfo = new NetworkPlayer();
             playerInfo.ID = id;
+            playerInfo.Name = Steam.personaName;
             playerInfo.PlayerGameObject = clone;
             m_players.Add(playerInfo);
 
@@ -479,10 +490,6 @@ namespace SkylinesMultiplayer
             m_client.Start();
             NetOutgoingMessage hail = m_client.CreateMessage("This is the hail message");
             m_client.Connect(ConnectSettings.Ip, ConnectSettings.Port, hail);
-
-            var sInstance = Singleton<SimulationManager>.instance;
-            var vInstance = Singleton<VehicleManager>.instance;
-            var cInstance = Singleton<CitizenManager>.instance;
 
             if (MultiplayerLoading.UseVehiclesAndCitizens)
             {

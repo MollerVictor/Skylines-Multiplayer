@@ -47,11 +47,12 @@ namespace SkylinesMultiplayer
     class MessageSpawnPlayer : Message
     {
         public int playerId;
+        public string playerName;
 
         public override void OnCalled(Message msg, NetIncomingMessage netMsg = null)
         {
             MessageSpawnPlayer message = msg as MessageSpawnPlayer;
-            MultiplayerManager.instance.SpawnPlayer(message.playerId, netMsg.SenderConnection);
+            MultiplayerManager.instance.SpawnPlayer(message.playerId, message.playerName, netMsg.SenderConnection);
         }
     }
 
