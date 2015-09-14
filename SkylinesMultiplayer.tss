@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ArrayOfArrayOfString>
+    <ArrayOfString>
+      <string>g:\fr0sz\programming\cities skyline\battleroyale\battleroyale\mod.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>g:\fr0sz\programming\cities skyline\battleroyale\battleroyale\prefabs\playerremoteprefab.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>g:\fr0sz\programming\cities skyline\battleroyale\battleroyale\player\playercontroller.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>g:\fr0sz\programming\cities skyline\battleroyale\battleroyale\prefabs\bullethitparticleprefab.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>g:\fr0sz\programming\cities skyline\battleroyale\battleroyale\prefabs\playerlocalprefab.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>g:\fr0sz\programming\cities skyline\battleroyale\battleroyale\player\playerserver.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>g:\fr0sz\programming\cities skyline\battleroyale\battleroyale\player\playerremote.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>g:\fr0sz\programming\cities skyline\battleroyale\battleroyale\player\player.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>g:\fr0sz\programming\cities skyline\battleroyale\battleroyale\multiplayermanager.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>g:\fr0sz\programming\cities skyline\battleroyale\battleroyale\vehiclenetworkmanager.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>g:\fr0sz\programming\cities skyline\battleroyale\battleroyale\citizennetworkmanager.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>g:\fr0sz\programming\cities skyline\battleroyale\battleroyale\citizennetworkview.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>g:\fr0sz\programming\cities skyline\battleroyale\battleroyale\vehiclenetworkview.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>g:\fr0sz\programming\cities skyline\battleroyale\battleroyale\soundmanager.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>g:\fr0sz\programming\cities skyline\battleroyale\battleroyale\player\playernetworkview.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>g:\fr0sz\programming\cities skyline\battleroyale\battleroyale\player\playercollision.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>g:\fr0sz\programming\cities skyline\battleroyale\battleroyale\multiplayermenu.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>g:\fr0sz\programming\cities skyline\battleroyale\battleroyale\udpkitunityutils.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>g:\fr0sz\programming\cities skyline\battleroyale\battleroyale\simplejson.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\ColossalManaged.pdb.source\ColossalFramework\Packaging\PackageManager.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\Assembly-CSharp.pdb.source\0200020c\LoadingManager.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\Assembly-CSharp.pdb.source\02000019\Starter.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\Assembly-CSharp.pdb.source\02000149\LoadPanel.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\Assembly-CSharp.pdb.source\02000164\LoadSavePanelBase'1.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\Assembly-CSharp.pdb.source\02000018\SaveHelper.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\Assembly-CSharp.pdb.source\02000163\LoadMapPanel.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\Assembly-CSharp.pdb.source\020000c2\LoadAssetPanel.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>g:\fr0sz\programming\cities skyline\battleroyale\battleroyale\hideui.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\ColossalManaged.pdb.source\ColossalFramework\Steamworks\GameOverlayDialog.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\ColossalManaged.pdb.source\ColossalFramework\Steamworks\GameOverlayOption.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\ColossalManaged.pdb.source\ColossalFramework\Steamworks\Stats.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\ColossalManaged.pdb.source\ColossalFramework\Steamworks\Steam.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\ColossalManaged.pdb.source\ColossalFramework\Steamworks\Friend.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\Assembly-CSharp.pdb.source\02000151\PackageEntry.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\Assembly-CSharp.pdb.source\020000dd\GameKeyShortcuts.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>G:\Fr0sZ\Programming\Cities Skyline\BattleRoyale\BattleRoyale\HostPanel.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\ColossalManaged.pdb.source\ColossalFramework\UI\UIListBox.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>g:\fr0sz\programming\cities skyline\battleroyale\battleroyale\helper.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\ColossalManaged.pdb.source\ColossalFramework\Steamworks\PublishedFileId.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\Assembly-CSharp.pdb.source\0200014b\MainMenu.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\Assembly-CSharp.pdb.source\0200014c\MenuPanel.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\ColossalManaged.pdb.source\ColossalFramework\UI\UIButton.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\Assembly-CSharp.pdb.source\020000bc\AssetTemplateListItem.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\ColossalManaged.pdb.source\ColossalFramework\DataBinding\BindEvent.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\ColossalManaged.pdb.source\ColossalFramework\DataBinding\BindingReference.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Fr0sZ\AppData\Local\Red Gate\.NET Reflector 8\Cache\0\ColossalManaged.pdb.source\0200012b\BindingInfo.cs</string>
+    </ArrayOfString>
+  </ArrayOfArrayOfString>
+</ArrayOfArrayOfArrayOfString>
