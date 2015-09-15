@@ -109,27 +109,12 @@ namespace SkylinesMultiplayer
 
             if (!m_hookHit)
             {
-                //TODO Change so you can't gain 1.4 times speed by going diagonally
-                if (Input.GetKey(KeyCode.W))
-                {
-                    m_velocity += transform.forward * movementSpeed * Time.deltaTime;
-                }
+                int verticalInput = Input.GetKey(KeyCode.W) ? 1 : Input.GetKey(KeyCode.S) ? -1 : 0;
+                int horInput = Input.GetKey(KeyCode.D) ? 1 : Input.GetKey(KeyCode.A) ? -1 : 0;
+                Vector3 inputDir = new Vector3(horInput, 0, verticalInput);
+                inputDir.Normalize();
 
-                if (Input.GetKey(KeyCode.S))
-                {
-                    m_velocity -= transform.forward * movementSpeed * Time.deltaTime;
-                }
-
-                if (Input.GetKey(KeyCode.D))
-                {
-                    m_velocity += transform.right * movementSpeed * Time.deltaTime;
-                }                                 
-                                                  
-                if (Input.GetKey(KeyCode.A))      
-                {                                 
-                    m_velocity -= transform.right * movementSpeed * Time.deltaTime;
-                }
-
+                m_velocity += transform.rotation * inputDir * movementSpeed * Time.deltaTime;
 
                 m_velocity.x = (m_velocity.x*(1 - GROUND_SLOW));
                 m_velocity.z = (m_velocity.z*(1 - GROUND_SLOW));
