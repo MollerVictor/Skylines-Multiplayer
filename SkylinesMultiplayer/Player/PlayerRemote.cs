@@ -14,8 +14,11 @@ namespace SkylinesMultiplayer
         {
             var obj = new GameObject("Hook Linerender");
             m_hookLineRender = obj.AddComponent<LineRenderer>();
-            m_hookLineRender.material = new Material(Shader.Find(" Diffuse"));
-            m_hookLineRender.SetWidth(0.5f, 0.5f);
+            m_hookLineRender.material = new Material(Shader.Find("Sprites/Default"));
+            m_hookLineRender.SetWidth(1, 0.4f);
+            Color startColor = new Color(0.55f, 0, 0);
+            Color endColor = new Color(0.15f, 0, 0);
+            m_hookLineRender.SetColors(startColor, endColor);
             m_hookLineRender.enabled = false;
         }
 
