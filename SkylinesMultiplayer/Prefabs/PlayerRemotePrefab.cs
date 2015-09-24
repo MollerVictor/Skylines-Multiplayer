@@ -24,8 +24,13 @@ namespace SkylinesMultiplayer.Prefabs
             gameObject.AddComponent<PlayerRemote>();
             var playerComp = gameObject.AddComponent<Player>();
             playerComp.m_playerId = id;
-            var boxCollider = gameObject.AddComponent<BoxCollider>();
-            boxCollider.size = new Vector3(1, 2, 1);
+
+            var collObject = new GameObject("BoxCollider");
+            collObject.layer = 2;   //Ignore raycast
+            collObject.transform.parent = gameObject.transform;
+            var collider = collObject.AddComponent<BoxCollider>();
+            collider.size = new Vector3(1, 2, 1);
+            collObject.AddComponent<DontRotate>();
 
             Object.Destroy(gameObject.GetComponent<ResidentAI>());
             Object.Destroy(gameObject.GetComponent<CitizenInfo>());

@@ -12,7 +12,7 @@ namespace SkylinesMultiplayer
 {
     public class Player : MonoBehaviour
     {
-        private const int SEND_RATE = 30;
+        private const int SEND_RATE = 30;   //How often the player send his position
 
         public bool m_isMine;
 
