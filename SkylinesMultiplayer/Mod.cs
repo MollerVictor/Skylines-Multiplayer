@@ -66,30 +66,7 @@ namespace SkylinesMultiplayer
 
                 new GameObject("Multiplayer Menu");
 
-                GameObject.Find("MenuContainer")
-                    .transform.Find("Group")
-                    .Find("MenuArea")
-                    .Find("Menu")
-                    .Find("LoadGame")
-                    .GetComponent<UIButton>()
-                    .text = "HOST GAME";
-
-                GameObject.Find("MenuContainer")
-                    .transform.Find("Group")
-                    .Find("MenuArea")
-                    .Find("Menu")
-                    .Find("NewGame")
-                    .GetComponent<UIButton>().text = "SERVER LIST";;
-
-                var joinByIpButton = GameObject.Find("MenuContainer")
-                    .transform.Find("Group")
-                    .Find("MenuArea")
-                    .Find("Menu")
-                    .Find("Continue")
-                    .GetComponent<UIButton>();
-
-                joinByIpButton.text = "JOIN BY IP";
-
+                ChangeMenuButtonsText();
 
                 var loadPanel = GameObject.Find("(Library) LoadPanel");
 
@@ -124,6 +101,52 @@ namespace SkylinesMultiplayer
                 re2.memberName = "OnStartNewGame";
                 newGamePanel.transform.Find("Start").GetComponent<BindEvent>().dataTarget = re2;
                 newGamePanel.transform.Find("Start").GetComponent<BindEvent>().Bind();
+            }
+        }
+
+        private void ChangeMenuButtonsText()
+        {
+            try
+            {
+                GameObject.Find("MenuContainer")
+                    .transform.Find("Group")
+                    .Find("MenuArea")
+                    .Find("Menu")
+                    .Find("LoadGame")
+                    .GetComponent<UIButton>()
+                    .text = "HOST GAME";
+            }
+            catch (NullReferenceException ex)
+            {
+                Debug.LogError("Can't change text on Host Game button");
+            }
+
+            try
+            {
+                GameObject.Find("MenuContainer")
+                    .transform.Find("Group")
+                    .Find("MenuArea")
+                    .Find("Menu")
+                    .Find("NewGame")
+                    .GetComponent<UIButton>().text = "SERVER LIST";
+            }
+            catch (NullReferenceException ex)
+            {
+                Debug.LogError("Can't change text on SERVER LIST button");
+            }
+
+            try
+            {
+                var joinByIpButton = GameObject.Find("MenuContainer")
+                    .transform.Find("Group")
+                    .Find("MenuArea")
+                    .Find("Menu")
+                    .Find("Continue")
+                    .GetComponent<UIButton>().text = "JOIN BY IP";
+            }
+            catch (NullReferenceException ex)
+            {
+                Debug.LogError("Can't change text on JOIN BY IP button");
             }
         }
 
