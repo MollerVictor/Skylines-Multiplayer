@@ -22,7 +22,7 @@ namespace SkylinesMultiplayer.Prefabs
             Camera.main.transform.parent = gameObject.transform;
             Camera.main.transform.localPosition = new Vector3(0, 1.5f, 0);
             Camera.main.transform.rotation = Quaternion.identity;
-            Camera.main.nearClipPlane = 1;  //If I use lower it acts weird with the street lights at night
+            Camera.main.nearClipPlane = 0.75f;  //If I use lower it acts weird with the street lights at night
             Camera.main.fieldOfView = 90;
 
             Camera.main.gameObject.AddComponent<FPSCameraController>().axes = FPSCameraController.RotationAxes.MouseY;
@@ -34,7 +34,7 @@ namespace SkylinesMultiplayer.Prefabs
             collObject.layer = 2;   //Ignore raycast
             collObject.transform.parent = gameObject.transform;
             var collider = collObject.AddComponent<BoxCollider>();
-            collider.size = new Vector3(1,2,1);
+            collider.size = new Vector3(1.2f,2,1.2f);
             collObject.AddComponent<DontRotate>();
             
             var rigidBody = gameObject.AddComponent<Rigidbody>();
