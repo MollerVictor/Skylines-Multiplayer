@@ -13,7 +13,6 @@ using System.Threading;
 using ColossalFramework.Plugins;
 using Lidgren.Network;
 using SimpleJSON;
-using UnityEditor;
 using UnityEngine;
 
 namespace SkylinesMultiplayer

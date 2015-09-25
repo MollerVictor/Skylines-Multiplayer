@@ -9,7 +9,6 @@ using ColossalFramework.Plugins;
 using ColossalFramework.Steamworks;
 using ColossalFramework.UI;
 using Lidgren.Network;
-using UnityEditor;
 using UnityEngine;
 
 namespace SkylinesMultiplayer
