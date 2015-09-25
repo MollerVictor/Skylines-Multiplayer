@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using ColossalFramework;
 using UnityEngine;
+using UnityStandardAssets.ImageEffects;
 
 namespace SkylinesMultiplayer.Prefabs
 {
@@ -19,6 +20,7 @@ namespace SkylinesMultiplayer.Prefabs
             gameObject.tag = "Player";
 
             Camera.main.GetComponent<CameraController>().enabled = false;
+            Camera.main.GetComponent<DepthOfField>().enabled = false;
             Camera.main.transform.parent = gameObject.transform;
             Camera.main.transform.localPosition = new Vector3(0, 1.5f, 0);
             Camera.main.transform.rotation = Quaternion.identity;
