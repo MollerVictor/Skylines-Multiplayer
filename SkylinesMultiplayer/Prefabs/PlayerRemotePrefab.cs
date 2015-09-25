@@ -28,6 +28,7 @@ namespace SkylinesMultiplayer.Prefabs
             var collObject = new GameObject("BoxCollider");
             collObject.layer = 2;   //Ignore raycast
             collObject.transform.parent = gameObject.transform;
+            collObject.transform.localPosition = Vector3.zero;
             var collider = collObject.AddComponent<BoxCollider>();
             collider.size = new Vector3(1, 2, 1);
             collObject.AddComponent<DontRotate>();
