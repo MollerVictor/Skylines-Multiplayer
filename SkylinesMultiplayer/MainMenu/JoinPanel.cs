@@ -129,10 +129,10 @@ namespace SkylinesMultiplayer
             var joinPanel = transform.GetComponent<UIPanel>();
 
             m_playersLabel = joinPanel.AddUIComponent<UILabel>();
-            SetLabel(m_playersLabel, "Players: -", 505, 100);
+            SetLabel(m_playersLabel, "Players: ", 505, 100);
 
             m_pingLabel = joinPanel.AddUIComponent<UILabel>();
-            SetLabel(m_pingLabel, "Ping: Trying to ping server", 505, 125);
+            SetLabel(m_pingLabel, "Ping: ", 505, 125);
 
             m_errorLabel = joinPanel.AddUIComponent<UILabel>();
             SetLabel(m_errorLabel, "", 505, 150);
