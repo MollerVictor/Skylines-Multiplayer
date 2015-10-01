@@ -360,6 +360,9 @@ namespace SkylinesMultiplayer
 
         public void OnStartNewGame()
         {
+            if (m_selectedIndex < 0 || m_serverList.Count == 0)
+                return;
+
             var mapId = ulong.Parse(m_serverList[m_selectedIndex]["mapId"]);
 
             if (mapId == 0)
