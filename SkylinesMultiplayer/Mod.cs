@@ -22,7 +22,7 @@ using SimpleJSON;
 
 namespace SkylinesMultiplayer
 {
-    class ServerEntry : JSONClass
+    internal class ServerEntry : JSONClass
     {
         public int id { get; set; }
 
@@ -60,47 +60,19 @@ namespace SkylinesMultiplayer
         {
             if (IsModActive() && GameObject.Find("Multiplayer Menu") == null)
             {
-                var openJoinByIpMethod = typeof(Mod).GetMethod("OpenJoinByIp");
-                var srcMethod7 = typeof(MainMenu).GetMethod("Continue", BindingFlags.Instance | BindingFlags.NonPublic);
+                var openJoinByIpMethod = typeof (Mod).GetMethod("OpenJoinByIp");
+                var srcMethod7 = typeof (MainMenu).GetMethod("Continue", BindingFlags.Instance | BindingFlags.NonPublic);
                 RedirectionHelper.RedirectCalls(srcMethod7, openJoinByIpMethod);
 
                 new GameObject("Multiplayer Menu");
 
                 ChangeMenuButtonsText();
 
-                var loadPanel = GameObject.Find("(Library) LoadPanel");
-
                 UIView v = UIView.GetAView();
-                m_joinByIpPanel = v.AddUIComponent(typeof(JoinByIpPanel));
+                m_joinByIpPanel = v.AddUIComponent(typeof (JoinByIpPanel));
 
-
-                if (loadPanel.GetComponent<LoadPanel>() != null)
-                    GameObject.Destroy(loadPanel.GetComponent<LoadPanel>());
-                if (loadPanel.GetComponent<HostPanel>() == null)
-                    loadPanel.AddComponent<HostPanel>();
-                loadPanel.transform.Find("Caption").Find("Label").GetComponent<UILabel>().text = "Host Game";
-                loadPanel.transform.Find("Load").GetComponent<UIButton>().text = "Host";
-                loadPanel.transform.Find("Load").GetComponent<BindEvent>().Unbind();
-                BindingReference re = new BindingReference();
-                re.component = loadPanel.GetComponent<HostPanel>();
-                re.memberName = "OnLoad";
-                loadPanel.transform.Find("Load").GetComponent<BindEvent>().dataTarget = re;
-                loadPanel.transform.Find("Load").GetComponent<BindEvent>().Bind();
-
-                var newGamePanel = GameObject.Find("(Library) NewGamePanel");
-
-                if (newGamePanel.GetComponent<NewGamePanel>() != null)
-                    GameObject.Destroy(newGamePanel.GetComponent<NewGamePanel>());
-                if (newGamePanel.GetComponent<JoinPanel>() == null)
-                    newGamePanel.AddComponent<JoinPanel>();
-                newGamePanel.transform.Find("Caption").Find("Label").GetComponent<UILabel>().text = "Join Game";
-                newGamePanel.transform.Find("Start").GetComponent<UIButton>().text = "Join";
-                newGamePanel.transform.Find("Start").GetComponent<BindEvent>().Unbind();
-                BindingReference re2 = new BindingReference();
-                re2.component = newGamePanel.GetComponent<JoinPanel>();
-                re2.memberName = "OnStartNewGame";
-                newGamePanel.transform.Find("Start").GetComponent<BindEvent>().dataTarget = re2;
-                newGamePanel.transform.Find("Start").GetComponent<BindEvent>().Bind();
+                CreateHostPanel();
+                CreateJoinPanel();
             }
         }
 
@@ -116,9 +88,9 @@ namespace SkylinesMultiplayer
                     .GetComponent<UIButton>()
                     .text = "HOST GAME";
             }
-            catch (NullReferenceException ex)
+            catch
             {
-                Debug.LogError("Can't change text on Host Game button");
+                throw new Exception("Can't change text on Host Game button");
             }
 
             try
@@ -130,9 +102,9 @@ namespace SkylinesMultiplayer
                     .Find("NewGame")
                     .GetComponent<UIButton>().text = "SERVER LIST";
             }
-            catch (NullReferenceException ex)
+            catch
             {
-                Debug.LogError("Can't change text on SERVER LIST button");
+                throw new Exception("Can't change text on SERVER LIST button");
             }
 
             try
@@ -144,17 +116,71 @@ namespace SkylinesMultiplayer
                     .Find("Continue")
                     .GetComponent<UIButton>().text = "JOIN BY IP";
             }
-            catch (NullReferenceException ex)
+            catch
             {
-                Debug.LogError("Can't change text on JOIN BY IP button");
+                throw new Exception("Can't change text on JOIN BY IP button");
             }
         }
+
+        void CreateHostPanel()
+        {
+            try
+            {
+                var loadPanel = GameObject.Find("(Library) LoadPanel");
+
+                if (loadPanel.GetComponent<LoadPanel>() != null)
+                    GameObject.Destroy(loadPanel.GetComponent<LoadPanel>());
+                if (loadPanel.GetComponent<HostPanel>() == null)
+                    loadPanel.AddComponent<HostPanel>();
+                loadPanel.transform.Find("Caption").Find("Label").GetComponent<UILabel>().text = "Host Game";
+                loadPanel.transform.Find("Load").GetComponent<UIButton>().text = "Host";
+                loadPanel.transform.Find("Load").GetComponent<BindEvent>().Unbind();
+                BindingReference re = new BindingReference();
+                re.component = loadPanel.GetComponent<HostPanel>();
+                re.memberName = "OnLoad";
+                loadPanel.transform.Find("Load").GetComponent<BindEvent>().dataTarget = re;
+                loadPanel.transform.Find("Load").GetComponent<BindEvent>().Bind();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Coulden't change the host panel.");
+            }
+        }
+
+
+        void CreateJoinPanel()
+        {
+
+            try
+            {
+                var newGamePanel = GameObject.Find("(Library) NewGamePanel");
+
+                if (newGamePanel.GetComponent<NewGamePanel>() != null)
+                    GameObject.Destroy(newGamePanel.GetComponent<NewGamePanel>());
+                if (newGamePanel.GetComponent<JoinPanel>() == null)
+                    newGamePanel.AddComponent<JoinPanel>();
+                newGamePanel.transform.Find("Caption").Find("Label").GetComponent<UILabel>().text = "Join Game";
+                newGamePanel.transform.Find("Start").GetComponent<UIButton>().text = "Join";
+                newGamePanel.transform.Find("Start").GetComponent<BindEvent>().Unbind();
+                BindingReference re2 = new BindingReference();
+                re2.component = newGamePanel.GetComponent<JoinPanel>();
+                re2.memberName = "OnStartNewGame";
+                newGamePanel.transform.Find("Start").GetComponent<BindEvent>().dataTarget = re2;
+                newGamePanel.transform.Find("Start").GetComponent<BindEvent>().Bind();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Coulden't change the join panel.");
+            }
+        }
+
 
         public static bool IsModActive()
         {
             var pluginManager = PluginManager.instance;
-            var plugins = ReflectionHelper.GetPrivate<Dictionary<string, PluginManager.PluginInfo>>(pluginManager, "m_Plugins");
-            
+            var plugins = ReflectionHelper.GetPrivate<Dictionary<string, PluginManager.PluginInfo>>(pluginManager,
+                "m_Plugins");
+
             foreach (var item in plugins)
             {
                 if (item.Value.name != Settings.WorkshopID)
@@ -219,38 +245,39 @@ namespace SkylinesMultiplayer
             m_hideUI = cameraController.gameObject.AddComponent<HideUI>();
         }
 
-        void RedirectCalls()
+        private void RedirectCalls()
         {
-            var nullMethod = typeof(Mod).GetMethod("NullOverride");
+            var nullMethod = typeof (Mod).GetMethod("NullOverride");
 
             //Removes the ability to pause/unpause the game
-            var srcMethod = typeof(SimulationManager).GetMethod("set_SimulationPaused");
+            var srcMethod = typeof (SimulationManager).GetMethod("set_SimulationPaused");
             RedirectionHelper.RedirectCalls(srcMethod, nullMethod);
 
             if (!UseVehiclesAndCitizens)
             {
-                var srcMethod2 = typeof(CitizenManager).GetMethod("CreateCitizenInstance");
+                var srcMethod2 = typeof (CitizenManager).GetMethod("CreateCitizenInstance");
                 RedirectionHelper.RedirectCalls(srcMethod2, nullMethod);
 
-                var myMethod = typeof(CitizenManager).GetMethods().Where(m => m.Name == "CreateCitizen").ToList();
+                var myMethod = typeof (CitizenManager).GetMethods().Where(m => m.Name == "CreateCitizen").ToList();
                 RedirectionHelper.RedirectCalls(myMethod[0], nullMethod);
                 RedirectionHelper.RedirectCalls(myMethod[1], nullMethod);
 
-                var srcMethod4 = typeof(CitizenManager).GetMethod("CreateUnits");
+                var srcMethod4 = typeof (CitizenManager).GetMethod("CreateUnits");
                 RedirectionHelper.RedirectCalls(srcMethod4, nullMethod);
 
 
-                var srcMethod6 = typeof(CitizenManager).GetMethod("InitializeInstance", BindingFlags.Instance | BindingFlags.NonPublic);
+                var srcMethod6 = typeof (CitizenManager).GetMethod("InitializeInstance",
+                    BindingFlags.Instance | BindingFlags.NonPublic);
                 RedirectionHelper.RedirectCalls(srcMethod6, nullMethod);
 
-                var srcMethod5 = typeof(VehicleManager).GetMethod("CreateVehicle");
+                var srcMethod5 = typeof (VehicleManager).GetMethod("CreateVehicle");
                 RedirectionHelper.RedirectCalls(srcMethod5, nullMethod);
             }
         }
 
         public override void OnLevelUnloading()
         {
-            if(m_hideUI != null)
+            if (m_hideUI != null)
                 GameObject.Destroy(m_hideUI);
             if (m_mInstance != null && m_mInstance.gameObject != null)
                 GameObject.Destroy(m_mInstance.gameObject);
@@ -261,7 +288,7 @@ namespace SkylinesMultiplayer
         {
             SaveGameMetaData result = null;
             foreach (Package.Asset current in PackageManager.FilterAssets(new Package.AssetType[]
-                                                                          {
+            {
                 UserAssetType.SaveGameMetaData
             }))
             {
@@ -273,7 +300,8 @@ namespace SkylinesMultiplayer
                         try
                         {
                             Stream s = saveGameMetaData.assetRef.GetStream();
-                            SimulationMetaData mysimmeta = DataSerializer.Deserialize<SimulationMetaData>(s, DataSerializer.Mode.File);
+                            SimulationMetaData mysimmeta = DataSerializer.Deserialize<SimulationMetaData>(s,
+                                DataSerializer.Mode.File);
                             if (mysimmeta.m_currentDateTime.Equals(needle))
                             {
                                 return saveGameMetaData;
@@ -341,6 +369,34 @@ namespace SkylinesMultiplayer
         public override int OnGetPopulationTarget(int originalTarget, int scaledTarget)
         {
             return base.OnGetPopulationTarget(int.MaxValue - 1, int.MaxValue - 1);
+        }
+    }
+
+    public class NoChirpy : IChirperExtension
+    {
+        public void OnCreated(IChirper chirper)
+        {
+            chirper.DestroyBuiltinChirper();
+        }
+
+        public void OnReleased()
+        {
+
+        }
+
+        public void OnUpdate()
+        {
+
+        }
+
+        public void OnMessagesUpdated()
+        {
+
+        }
+
+        public void OnNewMessage(IChirperMessage message)
+        {
+
         }
     }
 }
