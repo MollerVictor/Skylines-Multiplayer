@@ -1,4 +1,6 @@
-﻿using ColossalFramework;
+﻿using System.Collections.Generic;
+using ColossalFramework;
+using ColossalFramework.UI;
 using UnityEngine;
 
 namespace SkylinesMultiplayer
@@ -14,9 +16,46 @@ namespace SkylinesMultiplayer
 
         private bool m_mouseLocked = false;
 
+        private List<string> m_dontRemoveWhiteList = new List<string>(new string[] { "(Library) ExitConfirmPanel", "(Library) OptionsPanel", "(Library) PauseMenu", "Chat" }); 
+        
+
         void Start()
         {
             Hide();
+
+            var cameras = GameObject.FindObjectsOfType<Camera>();
+            foreach (var cam in cameras)
+            {
+                if (cam.name == "UIView")
+                {
+                    List<MonoBehaviour> allChildren = new List<MonoBehaviour>();
+                    allChildren.AddRange(cam.GetComponentsInChildren<UIPanel>());
+                    allChildren.AddRange(cam.GetComponentsInChildren<UISlicedSprite>());
+                    allChildren.AddRange(cam.GetComponentsInChildren<UISprite>());
+                    allChildren.AddRange(cam.GetComponentsInChildren<UIButton>());
+
+                    foreach (var child in allChildren)
+                    {
+                        Transform nextHighestParent = child.transform;
+
+                        while (nextHighestParent.parent != null && nextHighestParent.parent.parent != null)
+                        {
+                            nextHighestParent = nextHighestParent.parent;
+                        }
+
+                        if (m_dontRemoveWhiteList.Contains(nextHighestParent.name))
+                            continue;
+
+                        child.enabled = false;
+                    }
+
+                    Transform menu = cam.transform.Find("(Library) PauseMenu").Find("Menu");
+                    menu.Find("SaveGame").GetComponent<UIButton>().isEnabled = false;
+                    menu.Find("LoadGame").GetComponent<UIButton>().isEnabled = false;
+                    menu.Find("Statistics").GetComponent<UIButton>().isEnabled = false;
+                    break;
+                }
+            }
         }
 
         void OnDestroy()
@@ -34,16 +73,6 @@ namespace SkylinesMultiplayer
             camera.gameObject.AddComponent<CameraHook>();
             camera.GetComponent<OverlayEffect>().enabled = false;
 
-            var cameras = GameObject.FindObjectsOfType<Camera>();
-            foreach (var cam in cameras)
-            {
-                if (cam.name == "UIView")
-                {
-                    cam.enabled = false;
-                    break;
-                }
-            }
-
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
@@ -53,17 +82,6 @@ namespace SkylinesMultiplayer
             var cameraController = GameObject.FindObjectOfType<CameraController>();
             var camera = cameraController.gameObject.GetComponent<Camera>();
             Destroy(cameraController.GetComponent<CameraHook>());
-            camera.GetComponent<OverlayEffect>().enabled = true;
-
-            var cameras = GameObject.FindObjectsOfType<Camera>();
-            foreach (var cam in cameras)
-            {
-                if (cam.name == "UIView")
-                {
-                    cam.enabled = true;
-                    break;
-                }
-            }
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -98,6 +116,5 @@ namespace SkylinesMultiplayer
 
             m_lastForcedPausedStatus = forcedPause;
         }
-
     }
 }
