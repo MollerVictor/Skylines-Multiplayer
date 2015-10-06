@@ -127,7 +127,7 @@ namespace SkylinesMultiplayer
                 m_velocity.y = Math.Min(0, m_velocity.y);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) && (m_isGrounded || m_hookHit))
+            if (PlayerInput.JumpKey.GetKeyDown() && (m_isGrounded || m_hookHit))
             {
                 if (m_hookHit)
                 {
@@ -139,12 +139,12 @@ namespace SkylinesMultiplayer
                 Jump();
             }
 
-            float movementSpeed = Input.GetKey(KeyCode.LeftShift) ? WALK_SPEED : RUN_SPEED;
+            float movementSpeed = PlayerInput.WalkKey.GetKey() ? WALK_SPEED : RUN_SPEED;
             
             if (!m_hookHit)
             {
-                int verticalInput   = Input.GetKey(KeyCode.W) ? 1 : Input.GetKey(KeyCode.S) ? -1 : 0;
-                int horInput        = Input.GetKey(KeyCode.D) ? 1 : Input.GetKey(KeyCode.A) ? -1 : 0;
+                int verticalInput = PlayerInput.MoveForwardsKey.GetKey() ? 1 : PlayerInput.MoveBackwardsKey.GetKey() ? -1 : 0;
+                int horInput      = PlayerInput.MoveRightKey.GetKey()    ? 1 : PlayerInput.MoveLeftKey.GetKey() ? -1 : 0;
                 Vector3 inputDir = new Vector3(horInput, 0, verticalInput);
                 inputDir.Normalize();
 
@@ -158,7 +158,7 @@ namespace SkylinesMultiplayer
 
                 m_jumpExtraTimer -= Time.fixedDeltaTime;
 
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (PlayerInput.JumpKey.GetKey())
                 {
                     m_jumpExtraTimer = JUMP_INPUT_EXTRA_TIME;
                 }
@@ -168,7 +168,7 @@ namespace SkylinesMultiplayer
                     Jump();
                 }
 
-                if (Input.GetKeyDown(KeyCode.Space) && m_hookHit)
+                if (PlayerInput.JumpKey.GetKey() && m_hookHit)
                 {
                     m_hookHit = false;
                     m_hookLineRender.enabled = false;
@@ -208,7 +208,7 @@ namespace SkylinesMultiplayer
                     m_sweepTestCollider.transform.position = new Vector3(0, -10000, 0);
                 }
 
-                if (Input.GetKey(KeyCode.Space) && m_lastJumpTimer <= JUMP_EXTRA_HEIGHT_TIME)
+                if (PlayerInput.JumpKey.GetKey() && m_lastJumpTimer <= JUMP_EXTRA_HEIGHT_TIME)
                 {
                     m_velocity.y = JUMP_FORCE;
                 }
@@ -246,7 +246,7 @@ namespace SkylinesMultiplayer
         {
             m_lastJumpTimer += Time.deltaTime;
 
-            if (Input.GetMouseButtonDown(0))
+            if (PlayerInput.FireKey.GetKeyDown())
             {
                 //SoundManager.PlayClipAtPoint("WeaponShot", transform.position, 0.5f);
 
@@ -273,7 +273,7 @@ namespace SkylinesMultiplayer
             m_hookCooldown -= Time.deltaTime;
             m_hookCooldown = Math.Max(0, m_hookCooldown);
 
-            if (Input.GetMouseButtonDown(1) && m_hookCooldown <= 0)
+            if (PlayerInput.SecFireKey.GetKeyDown() && m_hookCooldown <= 0)
             {
                 Vector3 startPointShot = Camera.main.transform.position;
                 Vector3 endPointShot = Camera.main.transform.position + Camera.main.transform.forward * 100;
@@ -295,7 +295,7 @@ namespace SkylinesMultiplayer
                 }
             }
 
-            if (Input.GetMouseButton(1) && m_hookHit)
+            if (PlayerInput.SecFireKey.GetKey() && m_hookHit)
             {
                 if (m_rayCastInfo.hitType == RayFlags.Citizen && m_rayCastInfo.index != 0)
                 {
@@ -341,8 +341,8 @@ namespace SkylinesMultiplayer
                 m_velocity = dir * hookForce;
                 m_rigidBody.velocity = m_velocity;
             }
-            
-            if (Input.GetMouseButtonUp(1) && m_hookHit)
+
+            if (PlayerInput.SecFireKey.GetKeyUp() && m_hookHit)
             {
                 OnHookReleased();
             }
