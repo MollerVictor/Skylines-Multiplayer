@@ -36,7 +36,10 @@ namespace SkylinesMultiplayer
         private bool m_failedToConnect;
 
         public Chat Chat { get { return m_chat; } }
+        public NetworkPlayer MyNetworkPlayer { get { return m_myNetworkPlayer; } }
+
         public List<NetworkPlayer> m_players = new List<NetworkPlayer>();
+        private NetworkPlayer m_myNetworkPlayer;
 
         private float m_simulationTimer;
 
@@ -378,6 +381,8 @@ namespace SkylinesMultiplayer
             playerInfo.Name = Steam.personaName;
             playerInfo.PlayerGameObject = clone;
             m_players.Add(playerInfo);
+
+            m_myNetworkPlayer = playerInfo;
 
             GameObject.FindObjectOfType<CameraController>().GetComponent<HideUI>().MouseLocked = true;
 
