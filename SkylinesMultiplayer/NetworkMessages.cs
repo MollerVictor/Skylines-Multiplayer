@@ -143,4 +143,15 @@ namespace SkylinesMultiplayer
             }
         }
     }
+
+    class MessageSendChatMessage : Message
+    {
+        public string chatMessage;
+
+        public override void OnCalled(Message msg, NetIncomingMessage netMsg = null)
+        {
+            MessageSendChatMessage message = msg as MessageSendChatMessage;
+            MultiplayerManager.instance.Chat.OnReceiveChatMessage(message.chatMessage);
+        }
+    }
 }

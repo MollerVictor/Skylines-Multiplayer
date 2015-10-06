@@ -30,10 +30,12 @@ namespace SkylinesMultiplayer
 
         public VehicleNetworkManager m_vNetworkManager;
         public CitizenNetworkManager m_cNetworkManager;
+        private Chat m_chat;
 
         public bool m_isServer;
         private bool m_failedToConnect;
 
+        public Chat Chat { get { return m_chat; } }
         public List<NetworkPlayer> m_players = new List<NetworkPlayer>();
 
         private float m_simulationTimer;
@@ -44,6 +46,9 @@ namespace SkylinesMultiplayer
         {
             instance = this;
             gameObject.AddComponent<Scoreboard>();
+
+            UIView v = UIView.GetAView();
+            m_chat = v.AddUIComponent(typeof(Chat)) as Chat;
         }
 
         private int m_lastId = 1;
